@@ -1,4 +1,4 @@
-/* --- Variáveis de Cores (Mantenha ou adicione conforme sua paleta) --- */
+/* --- Variáveis de Cores --- */
 :root {
     --primary-blue: #007BFF;
     --secondary-green: #28A745;
@@ -188,6 +188,9 @@ nav ul li a:hover::after {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha o conteúdo à esquerda dentro do card */
 }
 
 .feature-item:hover {
@@ -197,7 +200,7 @@ nav ul li a:hover::after {
 
 .feature-header-row {
     display: flex;
-    align-items: flex-start;
+    align-items: flex-start; /* Alinha o início dos itens (topo do ícone com topo do summary) */
     gap: 20px;
     margin-bottom: 0;
     width: 100%;
@@ -208,7 +211,7 @@ nav ul li a:hover::after {
     width: 60px;
     height: auto;
     flex-shrink: 0;
-    align-self: flex-start;
+    align-self: flex-start; /* Garante que o ícone se alinhe ao topo da linha flex */
 }
 
 /* Estilos para o elemento <details> */
@@ -222,9 +225,9 @@ nav ul li a:hover::after {
     color: var(--dark-grey);
     font-weight: 700;
     cursor: pointer;
-    list-style: none;
+    list-style: none; /* Remove o marcador padrão do summary (a setinha) */
     position: relative;
-    padding-right: 25px;
+    padding-right: 25px; /* Espaço para a seta personalizada */
     transition: color 0.3s ease;
     text-align: left;
     width: 100%;
@@ -258,14 +261,14 @@ nav ul li a:hover::after {
     font-size: 1em;
     color: var(--dark-grey);
     line-height: 1.6;
-    padding-top: 15px;
-    border-top: 1px solid var(--light-grey);
-    margin-top: 15px;
+    padding-top: 15px; /* Espaço acima do texto expandido */
+    border-top: 1px solid var(--light-grey); /* Linha divisória sutil */
+    margin-top: 15px; /* Espaço acima da linha */
     text-align: left;
 
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
+    max-height: 0; /* Inicialmente escondido com altura zero */
+    opacity: 0;    /* Inicialmente invisível */
+    overflow: hidden; /* **MANTIDO AQUI**: Oculta conteúdo que excede max-height */
     transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out,
                 padding-top 0.4s ease-in-out, margin-top 0.4s ease-in-out, border-top 0.4s ease-in-out;
 }
