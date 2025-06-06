@@ -1,0 +1,15 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, h3 {
+    font-weight: 700; /* Bold para títulos */
+}
+
+p {
+    font-weight: 400; /* Regular para o corpo do texto */
+}
+
+.subtitle {
+    font-weight: 600; /* SemiBold para subtítulos */
+}
