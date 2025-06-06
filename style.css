@@ -485,3 +485,35 @@ nav ul li a:hover::after {
     margin-top: 30px; /* Espaço acima do botão */
 }
 
+/* --- Estilos para as Mensagens do Formulário (adicionar no final do style.css) --- */
+.form-message {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    display: none; /* Inicia escondido */
+    opacity: 0; /* Inicia invisível para transição */
+    transition: opacity 0.3s ease-in-out;
+}
+
+.form-message.loading {
+    background-color: #e0f2f7; /* Cor suave para carregamento */
+    color: var(--primary-blue);
+    display: block; /* Mostra a mensagem */
+    opacity: 1;
+}
+
+.form-message.success {
+    background-color: #d4edda; /* Cor verde suave para sucesso */
+    color: var(--secondary-green);
+    display: block;
+    opacity: 1;
+}
+
+.form-message.error {
+    background-color: #f8d7da; /* Cor vermelha suave para erro */
+    color: #dc3545; /* Vermelho mais forte */
+    display: block;
+    opacity: 1;
+}
