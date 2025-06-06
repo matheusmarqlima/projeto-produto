@@ -1,5 +1,24 @@
+/* --- Variáveis de Cores --- */
+
+:root {
+    --primary-blue: #007BFF; /* Da nossa paleta sugerida */
+    --secondary-green: #28A745; /* Da nossa paleta sugerida */
+    --dark-grey: #343A40; /* Da nossa paleta sugerida */
+    --light-grey: #F8F9FA; /* Da nossa paleta sugerida */
+    --white: #FFFFFF; /* Da nossa paleta sugerida */
+}
+
+/* --- Estilos Gerais --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Fundamental para layout e espaçamentos */
+}
+
 body {
     font-family: 'Poppins', sans-serif;
+    background-color: var(--white); /* Mudei para branco, red era só para teste, certo? */
+    /* Removi a margem do body aqui, geralmente controlamos espaçamento com padding nos containers */
 }
 
 h1, h2, h3 {
@@ -12,4 +31,68 @@ p {
 
 .subtitle {
     font-weight: 600; /* SemiBold para subtítulos */
+}
+
+/* --- Estilo do Cabeçalho (header) --- */
+.header { 
+    background-color: var(--light-grey); /* Cor de fundo do header da nossa paleta */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para o header */
+    padding: 15px 0; /* Espaçamento vertical para o header. O padding horizontal será no container */
+}
+
+.header .container {
+    display: flex; /* ATIVA O FLEXBOX para os filhos diretos: .logo e <nav> */
+    align-items: center; /* Centraliza verticalmente os itens (logo e nav) */
+    justify-content: space-between; /* Distribui o espaço: logo à esquerda, nav à direita */
+    max-width: 1200px; /* Limita a largura do conteúdo interno */
+    margin: 0 auto; /* Centraliza o container na página */
+    padding: 0 20px; /* Espaçamento interno horizontal para não "colar" nas bordas */
+}
+
+/* Estilo do Logo */
+.logo img {
+    height: 50px; /* Altura do logo (ajuste conforme a sua imagem) */
+    width: auto; /* Mantém a proporção automaticamente */
+    border-radius: 50%; /* Faz a imagem parecer um círculo se for quadrada */
+    padding: 5px; /* Espaçamento interno dentro da área circular, se desejado */
+    
+}
+
+/* Estilo da Navegação (nav) e seus links */
+nav ul { /* Alvo a UL dentro da NAV */
+    list-style: none; /* REMOVE AS BOLINHAS/MARCADORES da lista */
+    display: flex; /* ATIVA O FLEXBOX para os LI's (itens da lista) */
+    gap: 30px; /* Espaçamento entre os itens da lista, uma alternativa moderna ao margin-right */
+    
+}
+
+/* Estilo dos links individuais */
+nav ul li a {
+    text-decoration: none; /* Remove o sublinhado Padrão dos links */
+    color: var(--dark-grey); /* Cor do texto do link, da sua paleta */
+    font-weight: 400; /* Peso da fonte regular */
+    padding: 5px 0; /* Espaçamento interno para a área clicável */
+    position: relative; /* Essencial para posicionar o "sublinhado" com pseudo-elemento */
+    transition: color 0.3s ease; /* Transição suave para a cor do texto ao passar o mouse */
+}
+
+/* Pseudo-elemento para criar a linha embaixo */
+nav ul li a::after {
+    content: ''; /* Conteúdo vazio é necessário para pseudo-elementos */
+    position: absolute; /* Posição absoluta em relação ao link (pai com position: relative) */
+    width: 0; /* Começa com largura zero */
+    height: 2px; /* Espessura da linha */
+    background-color: var(--primary-blue); /* Cor da linha (da sua paleta) */
+    left: 0; /* Começa da esquerda */
+    bottom: 0; /* Posição na parte inferior do link */
+    transition: width 0.3s ease; /* Transição suave para a largura (efeito de "crescer") */
+}
+
+/* Efeito ao passar o mouse */
+nav ul li a:hover {
+    color: var(--primary-blue); /* Muda a cor do texto ao passar o mouse */
+}
+
+nav ul li a:hover::after {
+    width: 100%; /* A linha cresce para 100% da largura do link ao passar o mouse */
 }
