@@ -11,13 +11,12 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho total do elemento */
+    box-sizing: border-box;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--white);
-    /* Remova qualquer margem do body aqui. O espaçamento geral será no .container */
 }
 
 h1, h2, h3 {
@@ -36,29 +35,29 @@ p {
 .header {
     background-color: var(--light-grey);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 15px 0; /* Padding vertical para o header. Padding horizontal no container. */
+    padding: 15px 0;
 }
 
 .header .container {
-    display: flex; /* Flexbox para alinhar logo e nav */
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: space-between; /* Distribui espaço entre logo e nav */
-    max-width: 1200px; /* Largura máxima do conteúdo */
-    margin: 0 auto; /* Centraliza o container */
-    padding: 0 20px; /* Espaçamento interno nas laterais para não grudar */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .logo img {
-    height: 50px; /* Altura do logo (ajuste conforme a sua imagem) */
-    width: auto; /* Mantém a proporção */
-    border-radius: 50%; /* Faz a imagem parecer um círculo se for quadrada */
-    padding: 5px; /* Espaçamento interno, se desejar */
+    height: 50px;
+    width: auto;
+    border-radius: 50%;
+    padding: 5px;
 }
 
 nav ul {
-    list-style: none; /* Remove marcadores da lista */
-    display: flex; /* Flexbox para alinhar os itens da lista (li) */
-    gap: 30px; /* Espaçamento entre os itens do menu */
+    list-style: none;
+    display: flex;
+    gap: 30px;
 }
 
 nav ul li a {
@@ -93,24 +92,24 @@ nav ul li a:hover::after {
 
 .hero {
     background-color: var(--white);
-    padding: 80px 0; /* Espaçamento interno superior e inferior da seção */
+    padding: 80px 0;
 }
 
-.hero .container { /* Alvo o container dentro da seção .hero */
-    display: flex; /* Ativa o Flexbox para alinhar texto e imagem lado a lado */
-    flex-direction: row; /* Garante que o texto e a imagem fiquem em linha */
-    align-items: center; /* Centraliza verticalmente o texto e a imagem */
-    justify-content: space-between; /* Distribui o espaço entre o texto e a imagem */
-    max-width: 1200px; /* Largura máxima do conteúdo */
-    margin: 0 auto; /* Centraliza o container na página */
-    padding: 0 20px; /* Espaçamento interno nas laterais para a margem geral */
+.hero .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .hero-content {
-    flex: 1; /* Permite que o bloco de texto ocupe o espaço disponível */
-    margin-right: 50px; /* Espaço entre o bloco de texto e a imagem */
-    max-width: 600px; /* Limita a largura do bloco de texto para melhor legibilidade */
-    text-align: left; /* Alinha o texto à esquerda */
+    flex: 1;
+    margin-right: 50px;
+    max-width: 600px;
+    text-align: left;
 }
 
 .hero-content h1 {
@@ -127,15 +126,15 @@ nav ul li a:hover::after {
 }
 
 .hero-image {
-    flex: 1; /* Permite que o bloco da imagem ocupe o espaço disponível */
+    flex: 1;
 }
 
 .hero-image img {
-    max-width: 100%; /* Garante que a imagem seja responsiva */
+    max-width: 100%;
     height: auto;
     display: block;
-    max-width: 500px; /* Limite de largura para desktop */
-    border-radius: 20px; /* Bordas arredondadas para a imagem */
+    max-width: 500px;
+    border-radius: 20px;
 }
 
 /* --- BOTÕES (Mantenha ou adicione conforme necessário) --- */
@@ -160,3 +159,101 @@ nav ul li a:hover::after {
     transform: translateY(-2px);
 }
 
+/* --- SEÇÃO DE RECURSOS (com <details>/<summary> e animação CSS) --- */
+.features {
+    background-color: var(--light-grey);
+    padding: 80px 0;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 2.5em;
+    color: var(--dark-grey);
+    margin-bottom: 60px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.feature-item {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* **AJUSTADO**: Garante que o ícone e o details fiquem lado a lado */
+.feature-header-row {
+    display: flex;
+    align-items: flex-start; /* Alinha o início dos itens (topo do ícone com topo do summary) */
+    gap: 20px;
+    margin-bottom: 0;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.feature-item img {
+    width: 60px;
+    height: auto;
+    flex-shrink: 0; /* IMPEDE que a imagem encolha */
+    align-self: flex-start; /* Garante que o ícone se alinhe ao topo da linha flex */
+}
+
+/* Estilos para o elemento <details> */
+.feature-item details {
+    flex-grow: 1; /* Permite que o details ocupe o espaço restante */
+    overflow: hidden; /* IMPORTANTE para que a animação de max-height funcione */
+}
+
+/* Estilos para o elemento <summary> (o cabeçalho clicável) */
+.feature-item summary {
+    font-size: 1.5em;
+    color: var(--dark-grey);
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none; /* Remove o marcador padrão do summary (a setinha) */
+    position: relative;
+    padding-right: 25px; /* Espaço para a seta personalizada */
+    transition: color 0.3s ease;
+    text-align: left;
+    width: 100%;
+    /* margin-bottom: 15px; /* Se o seu h3 tem margin-bottom, pode precisar de ajuste aqui */
+}
+
+.feature-item summary:hover {
+    color: var(--primary-blue);
+}
+
+/* Estilo para adicionar uma seta personalizada (o +) */
+.feature-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-blue);
+    transition: transform 0.3s ease, content 0.3s ease;
+}
+
+/* Gira a seta e muda o conteúdo quando o details está aberto */
+.feature-item details[open] summary::after {
+    content: '-';
+    transform: translateY(-50%) rotate(0deg);
+}
+
+/* Estilos para
