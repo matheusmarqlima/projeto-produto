@@ -90,7 +90,7 @@ nav ul li a:hover::after {
 }
 
 /* --- SEÇÃO HOME / HERO --- */
-/* MUDANÇA AQUI: Alterado de .hero-section para .hero para corresponder ao HTML */
+
 .hero {
     background-color: var(--white);
     padding: 80px 0; /* Espaçamento interno superior e inferior da seção */
@@ -135,7 +135,7 @@ nav ul li a:hover::after {
     height: auto;
     display: block;
     max-width: 500px; /* Limite de largura para desktop */
-    /* Você pode ajustar o margin-left ou margin-right aqui se precisar de um ajuste fino no alinhamento da imagem dentro do seu flex-item */
+    border-radius: 20px; /* Bordas arredondadas para a imagem */
 }
 
 /* --- BOTÕES (Mantenha ou adicione conforme necessário) --- */
