@@ -278,7 +278,7 @@ nav ul li a:hover::after {
 
 /* --- SEÇÃO DE DEPOIMENTOS (CARROSSEL) --- */
 .testimonials-section {
-    background-color: var(--white); /* Fundo branco ou outra cor suave */
+    background-color: var(--white);
     padding: 80px 0;
     text-align: center;
 }
@@ -290,43 +290,47 @@ nav ul li a:hover::after {
 }
 
 .carousel-wrapper {
-    position: relative; /* Para posicionar setas e pontos */
+    position: relative;
     max-width: 900px; /* Limita a largura do carrossel */
     margin: 0 auto;
     overflow: hidden; /* **CRÍTICO**: Esconde os slides que estão fora de vista */
-    padding: 0 20px; /* Espaçamento lateral para não grudar nas bordas */
+    padding: 0 50px; /* **ADICIONADO PADDING LATERAL**: Para dar espaço aos botões */
+    box-sizing: border-box; /* Garante que padding seja incluído na largura */
 }
 
 .carousel-track {
     display: flex; /* Coloca os slides lado a lado */
-    width: 100%; /* Inicia com 100%, será manipulado por JS */
+    /* REMOVIDO: width: 100%; (será setado pelo JS no posicionamento dos slides) */
     transition: transform 0.5s ease-in-out; /* Animação de deslizamento */
-    /* Garante que o track se ajuste ao número de slides. Será manipulado por JS */
+    gap: 30px; /* **NOVO: Espaçamento entre os slides** */
+    /* NENHUM espaçamento ou padding aqui, ele deve ser uma linha contínua de slides */
 }
 
 .testimonial-slide {
-    flex: 0 0 100%; /* Cada slide ocupa 100% da largura do carousel-wrapper */
-    min-width: 100%; /* Garante que o slide não encolha */
+    /* **AJUSTADO**: Garante que cada slide tenha a largura exata do wrapper visível */
+    flex: 0 0 100%; /* NÃO encolhe (0), NÃO cresce (0), e tem base de 100% da largura do pai (.carousel-track) */
+    min-width: 100%; /* Garante que o slide ocupe no mínimo 100% da largura do carousel-wrapper */
+    
     padding: 40px; /* Espaçamento interno do card de depoimento */
     background-color: var(--light-grey); /* Cor de fundo do slide */
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    margin: 0 20px; /* Espaçamento entre os slides (se forem exibidos múltiplos por vez) */
+    margin: 0; /* GARANTE QUE NÃO HÁ MARGEM LATERAL ENTRE OS SLIDES (o gap faz isso) */
     text-align: center;
-    box-sizing: border-box; /* Inclui padding na largura */
+    box-sizing: border-box; /* **CRÍTICO**: Inclui padding e border na largura total do elemento */
 }
 
 .client-avatar {
-    width: 100px; /* Tamanho do avatar */
+    width: 100px;
     height: 100px;
-    border-radius: 50%; /* Faz o avatar circular */
-    object-fit: cover; /* Garante que a imagem preencha o círculo sem distorcer */
+    border-radius: 50%;
+    object-fit: cover;
     margin-bottom: 20px;
-    border: 3px solid var(--primary-blue); /* Borda ao redor do avatar */
+    border: 3px solid var(--primary-blue);
 }
 
 .stars {
-    color: gold; /* Cor das estrelas */
+    color: gold;
     font-size: 1.5em;
     margin-bottom: 15px;
 }
@@ -340,7 +344,7 @@ nav ul li a:hover::after {
     line-height: 1.6;
     color: var(--dark-grey);
     margin-bottom: 20px;
-    font-style: italic; /* Depoimentos geralmente ficam bem com itálico */
+    font-style: italic;
 }
 
 .client-name {
@@ -354,15 +358,15 @@ nav ul li a:hover::after {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    background-color: rgba(0, 0, 0, 0.5);
     color: var(--white);
     border: none;
     padding: 10px 15px;
     cursor: pointer;
     font-size: 1.5em;
-    border-radius: 50%; /* Botões circulares */
+    border-radius: 50%;
     transition: background-color 0.3s ease;
-    z-index: 10; /* Garante que os botões fiquem por cima do carrossel */
+    z-index: 10;
 }
 
 .carousel-button:hover {
@@ -370,11 +374,16 @@ nav ul li a:hover::after {
 }
 
 .carousel-button.prev {
-    left: -20px; /* Posição à esquerda */
+    left: 20px; /* Posição à esquerda, dentro do padding do wrapper */
 }
 
 .carousel-button.next {
-    right: -20px; /* Posição à direita */
+    right: 20px; /* Posição à direita, dentro do padding do wrapper */
+}
+
+/* Classe para esconder setas, usada pelo JS */
+.is-hidden {
+    display: none;
 }
 
 /* Estilos para os Pontos de Navegação */
@@ -387,7 +396,7 @@ nav ul li a:hover::after {
 .carousel-dots .dot {
     width: 12px;
     height: 12px;
-    background-color: rgba(0, 0, 0, 0.3); /* Cor dos pontos inativos */
+    background-color: rgba(0, 0, 0, 0.3);
     border-radius: 50%;
     margin: 0 8px;
     cursor: pointer;
@@ -395,5 +404,5 @@ nav ul li a:hover::after {
 }
 
 .carousel-dots .dot.active {
-    background-color: var(--primary-blue); /* Cor do ponto ativo */
+    background-color: var(--primary-blue);
 }
