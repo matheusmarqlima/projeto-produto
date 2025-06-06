@@ -195,10 +195,9 @@ nav ul li a:hover::after {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* **AJUSTADO**: Garante que o ícone e o details fiquem lado a lado */
 .feature-header-row {
     display: flex;
-    align-items: flex-start; /* Alinha o início dos itens (topo do ícone com topo do summary) */
+    align-items: flex-start;
     gap: 20px;
     margin-bottom: 0;
     width: 100%;
@@ -208,14 +207,13 @@ nav ul li a:hover::after {
 .feature-item img {
     width: 60px;
     height: auto;
-    flex-shrink: 0; /* IMPEDE que a imagem encolha */
-    align-self: flex-start; /* Garante que o ícone se alinhe ao topo da linha flex */
+    flex-shrink: 0;
+    align-self: flex-start;
 }
 
 /* Estilos para o elemento <details> */
 .feature-item details {
-    flex-grow: 1; /* Permite que o details ocupe o espaço restante */
-    overflow: hidden; /* IMPORTANTE para que a animação de max-height funcione */
+    flex-grow: 1;
 }
 
 /* Estilos para o elemento <summary> (o cabeçalho clicável) */
@@ -224,13 +222,12 @@ nav ul li a:hover::after {
     color: var(--dark-grey);
     font-weight: 700;
     cursor: pointer;
-    list-style: none; /* Remove o marcador padrão do summary (a setinha) */
+    list-style: none;
     position: relative;
-    padding-right: 25px; /* Espaço para a seta personalizada */
+    padding-right: 25px;
     transition: color 0.3s ease;
     text-align: left;
     width: 100%;
-    /* margin-bottom: 15px; /* Se o seu h3 tem margin-bottom, pode precisar de ajuste aqui */
 }
 
 .feature-item summary:hover {
@@ -256,4 +253,147 @@ nav ul li a:hover::after {
     transform: translateY(-50%) rotate(0deg);
 }
 
-/* Estilos para
+/* Estilos para o conteúdo <p> que será expandido */
+.feature-item p {
+    font-size: 1em;
+    color: var(--dark-grey);
+    line-height: 1.6;
+    padding-top: 15px;
+    border-top: 1px solid var(--light-grey);
+    margin-top: 15px;
+    text-align: left;
+
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out,
+                padding-top 0.4s ease-in-out, margin-top 0.4s ease-in-out, border-top 0.4s ease-in-out;
+}
+
+/* Quando o details está aberto, o conteúdo aparece e anima */
+.feature-item details[open] p {
+    max-height: 500px; /* AJUSTE ESTE VALOR se o texto for muito grande */
+    opacity: 1;
+}
+
+/* --- SEÇÃO DE DEPOIMENTOS (CARROSSEL) --- */
+.testimonials-section {
+    background-color: var(--white); /* Fundo branco ou outra cor suave */
+    padding: 80px 0;
+    text-align: center;
+}
+
+.testimonials-section h2 {
+    font-size: 2.5em;
+    color: var(--dark-grey);
+    margin-bottom: 60px;
+}
+
+.carousel-wrapper {
+    position: relative; /* Para posicionar setas e pontos */
+    max-width: 900px; /* Limita a largura do carrossel */
+    margin: 0 auto;
+    overflow: hidden; /* **CRÍTICO**: Esconde os slides que estão fora de vista */
+    padding: 0 20px; /* Espaçamento lateral para não grudar nas bordas */
+}
+
+.carousel-track {
+    display: flex; /* Coloca os slides lado a lado */
+    width: 100%; /* Inicia com 100%, será manipulado por JS */
+    transition: transform 0.5s ease-in-out; /* Animação de deslizamento */
+    /* Garante que o track se ajuste ao número de slides. Será manipulado por JS */
+}
+
+.testimonial-slide {
+    flex: 0 0 100%; /* Cada slide ocupa 100% da largura do carousel-wrapper */
+    min-width: 100%; /* Garante que o slide não encolha */
+    padding: 40px; /* Espaçamento interno do card de depoimento */
+    background-color: var(--light-grey); /* Cor de fundo do slide */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin: 0 20px; /* Espaçamento entre os slides (se forem exibidos múltiplos por vez) */
+    text-align: center;
+    box-sizing: border-box; /* Inclui padding na largura */
+}
+
+.client-avatar {
+    width: 100px; /* Tamanho do avatar */
+    height: 100px;
+    border-radius: 50%; /* Faz o avatar circular */
+    object-fit: cover; /* Garante que a imagem preencha o círculo sem distorcer */
+    margin-bottom: 20px;
+    border: 3px solid var(--primary-blue); /* Borda ao redor do avatar */
+}
+
+.stars {
+    color: gold; /* Cor das estrelas */
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.stars span {
+    margin: 0 2px;
+}
+
+.testimonial-text {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: var(--dark-grey);
+    margin-bottom: 20px;
+    font-style: italic; /* Depoimentos geralmente ficam bem com itálico */
+}
+
+.client-name {
+    font-weight: 600;
+    color: var(--primary-blue);
+    font-size: 1.1em;
+}
+
+/* Estilos para as Setas de Navegação */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    color: var(--white);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.5em;
+    border-radius: 50%; /* Botões circulares */
+    transition: background-color 0.3s ease;
+    z-index: 10; /* Garante que os botões fiquem por cima do carrossel */
+}
+
+.carousel-button:hover {
+    background-color: var(--primary-blue);
+}
+
+.carousel-button.prev {
+    left: -20px; /* Posição à esquerda */
+}
+
+.carousel-button.next {
+    right: -20px; /* Posição à direita */
+}
+
+/* Estilos para os Pontos de Navegação */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.carousel-dots .dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(0, 0, 0, 0.3); /* Cor dos pontos inativos */
+    border-radius: 50%;
+    margin: 0 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-dots .dot.active {
+    background-color: var(--primary-blue); /* Cor do ponto ativo */
+}
