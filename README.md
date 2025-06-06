@@ -29,6 +29,8 @@ Este projeto faz uso de recursos visuais de talentosos criadores. Deixamos aqui 
 * **Ícones (Ayub Irawan):** Agradecimento ao trabalho de Ayub Irawan por fornecer ícones para o projeto.
    
 * **Ícones (Cap Cool):** Agradecimento ao trabalho de Cap Cool por fornecer ícones para o projeto.
+
+* **Ícones (Pixel Perfect):** Agradecimento ao trabalho de Pixel Perfect por fornecer ícones para o projeto.
     
 
 **Observação:** Como este é um projeto de estudo, as atribuições são mais gerais. Em um projeto real/comercial, é crucial verificar e seguir rigorosamente os termos de licença de cada recurso para a atribuição correta ou compra de licenças, se necessário.
