@@ -6,45 +6,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextButton = document.querySelector('.carousel-button.next');
     const dotsContainer = document.querySelector('.carousel-dots');
 
-    let currentSlideIndex = 0; // O índice do slide atualmente visível
+    let currentSlideIndex = 0; 
     
-    // Função para obter a largura computada de um slide E o valor do gap do track
     const getSlideAndGapWidth = () => {
-        // Pega o primeiro slide para calcular a largura
         const slideStyle = window.getComputedStyle(slides[0]);
-        const slideWidth = parseFloat(slideStyle.width); // Largura do slide (sem margin ou padding extras)
-
-        // Pega o gap do elemento pai (.carousel-track)
+        const slideWidth = parseFloat(slideStyle.width);
         const gap = parseFloat(window.getComputedStyle(carouselTrack).gap); 
-        
-        // Se o gap não for um número válido (ex: 'normal' ou 0px), o parseFloat pode retornar NaN.
-        // Se NaN, assume 0 para evitar problemas no cálculo.
         const actualGap = isNaN(gap) ? 0 : gap;
-
-        return slideWidth + actualGap; // Largura total de um slide + seu espaçamento
+        return slideWidth + actualGap;
     };
 
-    let totalSlideMovementWidth = 0; // Inicializa com 0, será calculado após o DOM
+    let totalSlideMovementWidth = 0;
 
-    // Função para atualizar a largura total do movimento e reposicionar o carrossel
     const updateCarouselDimensions = () => {
         totalSlideMovementWidth = getSlideAndGapWidth();
-        // Reposiciona o carrossel para o slide atual após a dimensão ser atualizada
         carouselTrack.style.transform = 'translateX(-' + currentSlideIndex * totalSlideMovementWidth + 'px)';
     };
 
-    // Inicializa as dimensões do carrossel assim que o DOM estiver pronto
     updateCarouselDimensions();
-
-    // Re-calcular a largura se a janela for redimensionada (para responsividade)
     window.addEventListener('resize', updateCarouselDimensions);
 
-
-    // Função para mover o carrossel para um slide específico
     const moveToSlide = (track, targetIndex) => {
         track.style.transform = 'translateX(-' + targetIndex * totalSlideMovementWidth + 'px)';
         
-        // Atualiza a classe 'current-slide'
         const currentSlide = track.querySelector('.current-slide');
         if (currentSlide) {
             currentSlide.classList.remove('current-slide');
@@ -52,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         slides[targetIndex].classList.add('current-slide');
     };
 
-    // Função para atualizar os pontos de navegação
     const updateDots = (targetIndex) => {
         const currentActiveDot = dotsContainer.querySelector('.dot.active');
         if (currentActiveDot) {
@@ -61,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
         dots[targetIndex].classList.add('active');
     };
 
-    // Função para mostrar/esconder as setas de navegação
     const showHideArrows = (prevButton, nextButton, targetIndex, totalSlides) => {
         if (targetIndex === 0) {
             prevButton.classList.add('is-hidden');
@@ -76,19 +58,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // 1. Gerar os pontos de navegação
     slides.forEach((slide, index) => {
         const dot = document.createElement('span');
         dot.classList.add('dot');
-        dot.dataset.slideIndex = index; // Adiciona um índice para referência
+        dot.dataset.slideIndex = index;
         if (index === 0) {
-            dot.classList.add('active'); // Primeiro ponto ativo por padrão
+            dot.classList.add('active');
         }
         dotsContainer.appendChild(dot);
     });
-    const dots = Array.from(dotsContainer.children); // Pega todos os pontos criados
+    const dots = Array.from(dotsContainer.children);
 
-    // 2. Event Listeners para as setas
     nextButton.addEventListener('click', () => {
         if (currentSlideIndex < slides.length - 1) {
             currentSlideIndex++;
@@ -107,27 +87,88 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3. Event Listeners para os pontos
     dotsContainer.addEventListener('click', (e) => {
-        const targetDot = e.target.closest('.dot'); // Garante que clicou num ponto
+        const targetDot = e.target.closest('.dot');
 
-        if (!targetDot) return; // Se não clicou num ponto, sai
+        if (!targetDot) return;
 
         const targetIndex = parseInt(targetDot.dataset.slideIndex);
         
-        // Verifica se clicou no slide atual para evitar movimento desnecessário
         if (targetIndex === currentSlideIndex) return; 
 
-        currentSlideIndex = targetIndex; // Atualiza o índice do slide atual
+        currentSlideIndex = targetIndex;
         moveToSlide(carouselTrack, currentSlideIndex);
         updateDots(currentSlideIndex);
         showHideArrows(prevButton, nextButton, currentSlideIndex, slides.length);
     });
 
-    // Inicialização final: Marca o primeiro slide como atual e atualiza setas
-    // Garante que o primeiro slide tenha a classe 'current-slide' para o JS encontrá-lo
     slides[0].classList.add('current-slide');
     showHideArrows(prevButton, nextButton, currentSlideIndex, slides.length);
 
     // --- Fim Lógica do Carrossel de Depoimentos ---
+
+
+    // --- Lógica do Formulário de Contato ---
+    const contactForm = document.querySelector('.contact-form');
+    // Cria um elemento para exibir mensagens de feedback
+    const formMessage = document.createElement('div'); 
+    formMessage.classList.add('form-message');
+    contactForm.appendChild(formMessage); // Adiciona a mensagem dentro do formulário
+
+    contactForm.addEventListener('submit', (event) => {
+        event.preventDefault(); // IMPEDE O RECARREGAMENTO DA PÁGINA
+
+        // Limpa mensagens anteriores
+        formMessage.textContent = '';
+        formMessage.classList.remove('success', 'error');
+
+        // Coleta os dados do formulário
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        // Validação simples de e-mail (além do required do HTML)
+        if (!validateEmail(email)) {
+            formMessage.textContent = 'Por favor, insira um e-mail válido.';
+            formMessage.classList.add('error');
+            return; // Sai da função se o e-mail for inválido
+        }
+
+        // Simula o envio (substituir por uma chamada real a um backend em um projeto real)
+        console.log('Dados do formulário a serem enviados:', { name, email, message });
+        
+        // Exibe uma mensagem de "enviando..."
+        formMessage.textContent = 'Enviando...';
+        formMessage.classList.add('loading');
+        
+        setTimeout(() => {
+            // Em um cenário real, aqui você faria uma requisição Fetch/XMLHttpRequest para um backend
+            // Ex: fetch('/api/send-contact', { method: 'POST', body: JSON.stringify({ name, email, message }) })
+            // .then(response => response.json())
+            // .then(data => { /* ... */ })
+            // .catch(error => { /* ... */ });
+
+            // Simulação de sucesso/erro
+            const success = Math.random() > 0.1; // 90% de chance de sucesso para o estudo
+
+            formMessage.classList.remove('loading');
+
+            if (success) {
+                formMessage.textContent = 'Mensagem enviada com sucesso! Em breve entraremos em contato.';
+                formMessage.classList.add('success');
+                contactForm.reset(); // Limpa o formulário
+            } else {
+                formMessage.textContent = 'Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.';
+                formMessage.classList.add('error');
+            }
+        }, 1500); // Simula um atraso de 1.5 segundos para o envio
+    });
+
+    // Função auxiliar para validar e-mail (pode ser mais robusta)
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    // --- Fim Lógica do Formulário de Contato ---
 });
