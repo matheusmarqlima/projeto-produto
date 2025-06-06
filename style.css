@@ -409,3 +409,79 @@ nav ul li a:hover::after {
 .carousel-dots .dot.active {
     background-color: var(--primary-blue);
 }
+
+/* --- SEÇÃO DE CONTATO / FORMULÁRIO --- */
+.contact-section {
+    background-color: var(--light-grey); /* Fundo suave para a seção */
+    padding: 80px 0;
+    text-align: center; /* Centraliza o título e a descrição */
+}
+
+.contact-section h2 {
+    font-size: 2.5em;
+    color: var(--dark-grey);
+    margin-bottom: 20px;
+}
+
+.contact-section p {
+    font-size: 1.1em;
+    color: var(--dark-grey);
+    max-width: 700px; /* Limita a largura da descrição para melhor leitura */
+    margin: 0 auto 40px auto; /* Centraliza e adiciona margem inferior */
+}
+
+.contact-form {
+    max-width: 600px; /* Limita a largura do formulário */
+    margin: 0 auto; /* Centraliza o formulário */
+    padding: 40px;
+    background-color: var(--white); /* Fundo branco para o formulário */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Alinha labels e inputs à esquerda */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Espaço entre os grupos de formulário */
+}
+
+.form-group label {
+    display: block; /* Garante que a label fique em sua própria linha */
+    font-weight: 600;
+    color: var(--dark-grey);
+    margin-bottom: 8px; /* Espaço entre a label e o input */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%; /* Campos ocupam 100% da largura do formulário */
+    padding: 12px 15px;
+    border: 1px solid #ced4da; /* Borda suave */
+    border-radius: 5px;
+    font-size: 1em;
+    font-family: 'Poppins', sans-serif; /* Garante a mesma fonte */
+    color: var(--dark-grey);
+    background-color: #f8f9fa; /* Fundo levemente cinza para os inputs */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-blue); /* Borda azul ao focar */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Sombra suave ao focar */
+    outline: none; /* Remove o outline padrão do navegador */
+}
+
+.form-group textarea {
+    resize: vertical; /* Permite redimensionar verticalmente, mas não horizontalmente */
+}
+
+.contact-form .btn-primary {
+    display: block; /* O botão ocupa a largura total do formulário */
+    width: 100%; /* Ocupa 100% da largura */
+    padding: 15px; /* Ajuste o padding para um botão maior */
+    font-size: 1.2em;
+    margin-top: 30px; /* Espaço acima do botão */
+}
+
