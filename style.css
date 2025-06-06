@@ -668,3 +668,245 @@ nav ul li a:hover::after {
 .legal-links a:hover {
     color: var(--primary-blue);
 }
+
+/* --- RESPONSIVIDADE --- */
+
+/* Ajustes para Telas Pequenas (até 768px - Celulares e Tablets em modo retrato) */
+@media (max-width: 768px) {
+    /* Ajustes Gerais */
+    .container {
+        padding: 0 15px; /* Diminui o padding lateral em telas menores */
+    }
+
+    h1 {
+        font-size: 2.5em; /* Reduz o tamanho do h1 principal */
+    }
+
+    h2 {
+        font-size: 2em; /* Reduz o tamanho dos h2 das seções */
+    }
+
+    p {
+        font-size: 0.9em; /* Reduz o tamanho dos parágrafos */
+    }
+
+    /* Cabeçalho */
+    .header .container {
+        flex-direction: column; /* Empilha logo e navegação */
+        align-items: center; /* Centraliza itens */
+        text-align: center;
+        padding-bottom: 15px; /* Espaçamento abaixo */
+    }
+
+    .header .logo {
+        margin-bottom: 15px; /* Espaço entre logo e nav */
+    }
+    
+    .header .logo img {
+        height: 40px; /* Reduz o tamanho do logo */
+    }
+
+    .header nav {
+        width: 100%; /* Navegação ocupa a largura total */
+    }
+
+    .header .nav-links {
+        flex-direction: column; /* Links do menu empilhados */
+        gap: 10px; /* Reduz espaçamento entre links */
+        margin-top: 10px;
+    }
+
+    .header .nav-links li {
+        margin-right: 0; /* Remove margem lateral entre links */
+        width: 100%; /* Cada link ocupa a largura total */
+    }
+
+    .header .nav-links a {
+        padding: 8px 0;
+        display: block; /* Para o padding funcionar em toda a área */
+        text-align: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Linha divisória */
+    }
+    .header .nav-links li:last-child a {
+        border-bottom: none; /* Remove linha do último */
+    }
+
+    /* Botão "Comprar Agora" no header (se existir) */
+    .header .btn-primary {
+        margin-top: 15px;
+        width: 80%; /* Ocupa mais largura */
+    }
+
+
+    /* Seção Hero */
+    .hero .container {
+        flex-direction: column; /* Empilha texto e imagem */
+        text-align: center;
+        gap: 40px; /* Espaçamento entre texto e imagem empilhados */
+    }
+
+    .hero-content {
+        margin-right: 0; /* Remove margem lateral */
+    }
+
+    .hero-content h1 {
+        font-size: 2.8em; /* Ajusta tamanho do título Hero */
+    }
+    .hero-content .subtitle {
+        font-size: 1.1em; /* Ajusta tamanho do subtítulo Hero */
+    }
+
+    .hero-image {
+        order: -1; /* Coloca a imagem acima do texto em mobile, opcional */
+    }
+    .hero-image img {
+        max-width: 80%; /* Ajusta o tamanho da imagem Hero */
+    }
+
+    /* Seção Recursos */
+    .features-grid {
+        grid-template-columns: 1fr; /* Uma coluna por padrão em mobile */
+        gap: 30px; /* Reduz o espaçamento entre cards */
+    }
+    
+    .feature-item {
+        padding: 25px; /* Reduz padding interno dos cards de recursos */
+    }
+
+    .feature-item img {
+        width: 50px; /* Reduz o tamanho dos ícones */
+    }
+
+    .feature-item h3 {
+        font-size: 1.3em; /* Reduz o tamanho dos títulos dos recursos */
+    }
+
+    /* Seção Depoimentos */
+    .carousel-wrapper {
+        padding: 0 10px; /* Diminui padding lateral para os botões ficarem mais próximos */
+    }
+
+    .carousel-button.prev {
+        left: 0px; /* Move o botão para a borda */
+    }
+    .carousel-button.next {
+        right: 0px; /* Move o botão para a borda */
+    }
+    .carousel-button {
+        padding: 8px 12px; /* Reduz o tamanho dos botões */
+        font-size: 1.2em;
+    }
+
+    .testimonial-slide {
+        padding: 30px; /* Reduz padding interno do slide */
+    }
+
+    .client-avatar {
+        width: 80px; /* Reduz o tamanho do avatar */
+        height: 80px;
+    }
+
+    /* Seção Contato */
+    .contact-form {
+        padding: 25px; /* Reduz padding interno do formulário */
+        margin: 0 15px; /* Adiciona margem lateral para não colar */
+    }
+    
+    .form-group label {
+        font-size: 0.9em; /* Reduz fonte da label */
+    }
+
+    .form-group input, .form-group textarea {
+        font-size: 0.9em; /* Reduz fonte dos inputs */
+        padding: 10px 12px;
+    }
+
+    .contact-form .btn-primary {
+        font-size: 1.1em;
+        padding: 12px;
+    }
+
+    /* Rodapé */
+    .main-footer .container {
+        flex-direction: column; /* Empilha as colunas do rodapé */
+        gap: 40px; /* Aumenta o espaçamento entre as colunas empilhadas */
+        text-align: center; /* Centraliza o texto das colunas */
+    }
+
+    .footer-col {
+        min-width: 100%; /* Coluna ocupa largura total */
+        padding: 0; /* Remove padding lateral que tínhamos nas colunas */
+    }
+    .footer-col h3, .footer-logo, .brand-info p, .nav-links a, .contact-info p, .contact-info a {
+        text-align: center; /* Centraliza o texto dentro das colunas */
+    }
+
+    .nav-links ul, .social-icons, .my-social-links {
+        justify-content: center; /* Centraliza listas de ícones/links */
+    }
+    
+    .footer-bottom {
+        flex-direction: column; /* Empilha o copyright e links legais */
+        gap: 15px;
+    }
+    .legal-links {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .legal-links a {
+        margin: 0; /* Remove margem horizontal */
+    }
+}
+
+
+/* Ajustes para Telas Médias (entre 769px e 992px - Tablets em modo paisagem e Laptops pequenos) */
+@media (min-width: 769px) and (max-width: 992px) {
+    .container {
+        padding: 0 30px; /* Ajusta um pouco o padding lateral */
+    }
+
+    /* Cabeçalho */
+    .header .nav-links {
+        gap: 20px; /* Ajusta espaçamento entre links */
+    }
+
+    /* Seção Hero */
+    .hero-content h1 {
+        font-size: 3em;
+    }
+    .hero-content .subtitle {
+        font-size: 1.2em;
+    }
+    .hero-image img {
+        max-width: 400px; /* Pode reduzir um pouco a imagem */
+    }
+
+    /* Seção Recursos */
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr); /* Duas colunas */
+        gap: 30px;
+    }
+
+    /* Carrossel Depoimentos */
+    .carousel-wrapper {
+        max-width: 700px; /* Reduz a largura máxima do carrossel */
+    }
+    .carousel-button.prev {
+        left: 10px; /* Ajusta a posição das setas */
+    }
+    .carousel-button.next {
+        right: 10px;
+    }
+
+    /* Rodapé */
+    .footer-columns {
+        flex-wrap: wrap; /* Garante quebras se o conteúdo for longo */
+        justify-content: space-around; /* Distribui melhor as colunas */
+    }
+    .footer-col {
+        min-width: 220px; /* Largura mínima um pouco maior */
+        flex: 1 1 auto; /* Permite mais flexibilidade no tamanho */
+    }
+}
+
