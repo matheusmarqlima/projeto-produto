@@ -1,98 +1,162 @@
-/* --- Variáveis de Cores --- */
-
+/* --- Variáveis de Cores (Mantenha ou adicione conforme sua paleta) --- */
 :root {
-    --primary-blue: #007BFF; /* Da nossa paleta sugerida */
-    --secondary-green: #28A745; /* Da nossa paleta sugerida */
-    --dark-grey: #343A40; /* Da nossa paleta sugerida */
-    --light-grey: #F8F9FA; /* Da nossa paleta sugerida */
-    --white: #FFFFFF; /* Da nossa paleta sugerida */
+    --primary-blue: #007BFF;
+    --secondary-green: #28A745;
+    --dark-grey: #343A40;
+    --light-grey: #F8F9FA;
+    --white: #FFFFFF;
 }
 
 /* --- Estilos Gerais --- */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Fundamental para layout e espaçamentos */
+    box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho total do elemento */
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--white); /* Mudei para branco, red era só para teste, certo? */
-    /* Removi a margem do body aqui, geralmente controlamos espaçamento com padding nos containers */
+    background-color: var(--white);
+    /* Remova qualquer margem do body aqui. O espaçamento geral será no .container */
 }
 
 h1, h2, h3 {
-    font-weight: 700; /* Bold para títulos */
+    font-weight: 700;
 }
 
 p {
-    font-weight: 400; /* Regular para o corpo do texto */
+    font-weight: 400;
 }
 
 .subtitle {
-    font-weight: 600; /* SemiBold para subtítulos */
+    font-weight: 600;
 }
 
 /* --- Estilo do Cabeçalho (header) --- */
-.header { 
-    background-color: var(--light-grey); /* Cor de fundo do header da nossa paleta */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para o header */
-    padding: 15px 0; /* Espaçamento vertical para o header. O padding horizontal será no container */
+.header {
+    background-color: var(--light-grey);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px 0; /* Padding vertical para o header. Padding horizontal no container. */
 }
 
 .header .container {
-    display: flex; /* ATIVA O FLEXBOX para os filhos diretos: .logo e <nav> */
-    align-items: center; /* Centraliza verticalmente os itens (logo e nav) */
-    justify-content: space-between; /* Distribui o espaço: logo à esquerda, nav à direita */
-    max-width: 1200px; /* Limita a largura do conteúdo interno */
-    margin: 0 auto; /* Centraliza o container na página */
-    padding: 0 20px; /* Espaçamento interno horizontal para não "colar" nas bordas */
+    display: flex; /* Flexbox para alinhar logo e nav */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: space-between; /* Distribui espaço entre logo e nav */
+    max-width: 1200px; /* Largura máxima do conteúdo */
+    margin: 0 auto; /* Centraliza o container */
+    padding: 0 20px; /* Espaçamento interno nas laterais para não grudar */
 }
 
-/* Estilo do Logo */
 .logo img {
     height: 50px; /* Altura do logo (ajuste conforme a sua imagem) */
-    width: auto; /* Mantém a proporção automaticamente */
+    width: auto; /* Mantém a proporção */
     border-radius: 50%; /* Faz a imagem parecer um círculo se for quadrada */
-    padding: 5px; /* Espaçamento interno dentro da área circular, se desejado */
-    
+    padding: 5px; /* Espaçamento interno, se desejar */
 }
 
-/* Estilo da Navegação (nav) e seus links */
-nav ul { /* Alvo a UL dentro da NAV */
-    list-style: none; /* REMOVE AS BOLINHAS/MARCADORES da lista */
-    display: flex; /* ATIVA O FLEXBOX para os LI's (itens da lista) */
-    gap: 30px; /* Espaçamento entre os itens da lista, uma alternativa moderna ao margin-right */
-    
+nav ul {
+    list-style: none; /* Remove marcadores da lista */
+    display: flex; /* Flexbox para alinhar os itens da lista (li) */
+    gap: 30px; /* Espaçamento entre os itens do menu */
 }
 
-/* Estilo dos links individuais */
 nav ul li a {
-    text-decoration: none; /* Remove o sublinhado Padrão dos links */
-    color: var(--dark-grey); /* Cor do texto do link, da sua paleta */
-    font-weight: 400; /* Peso da fonte regular */
-    padding: 5px 0; /* Espaçamento interno para a área clicável */
-    position: relative; /* Essencial para posicionar o "sublinhado" com pseudo-elemento */
-    transition: color 0.3s ease; /* Transição suave para a cor do texto ao passar o mouse */
+    text-decoration: none;
+    color: var(--dark-grey);
+    font-weight: 400;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
 }
 
-/* Pseudo-elemento para criar a linha embaixo */
 nav ul li a::after {
-    content: ''; /* Conteúdo vazio é necessário para pseudo-elementos */
-    position: absolute; /* Posição absoluta em relação ao link (pai com position: relative) */
-    width: 0; /* Começa com largura zero */
-    height: 2px; /* Espessura da linha */
-    background-color: var(--primary-blue); /* Cor da linha (da sua paleta) */
-    left: 0; /* Começa da esquerda */
-    bottom: 0; /* Posição na parte inferior do link */
-    transition: width 0.3s ease; /* Transição suave para a largura (efeito de "crescer") */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-blue);
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s ease;
 }
 
-/* Efeito ao passar o mouse */
 nav ul li a:hover {
-    color: var(--primary-blue); /* Muda a cor do texto ao passar o mouse */
+    color: var(--primary-blue);
 }
 
 nav ul li a:hover::after {
-    width: 100%; /* A linha cresce para 100% da largura do link ao passar o mouse */
+    width: 100%;
 }
+
+/* --- SEÇÃO HOME / HERO --- */
+/* MUDANÇA AQUI: Alterado de .hero-section para .hero para corresponder ao HTML */
+.hero {
+    background-color: var(--white);
+    padding: 80px 0; /* Espaçamento interno superior e inferior da seção */
+}
+
+.hero .container { /* Alvo o container dentro da seção .hero */
+    display: flex; /* Ativa o Flexbox para alinhar texto e imagem lado a lado */
+    flex-direction: row; /* Garante que o texto e a imagem fiquem em linha */
+    align-items: center; /* Centraliza verticalmente o texto e a imagem */
+    justify-content: space-between; /* Distribui o espaço entre o texto e a imagem */
+    max-width: 1200px; /* Largura máxima do conteúdo */
+    margin: 0 auto; /* Centraliza o container na página */
+    padding: 0 20px; /* Espaçamento interno nas laterais para a margem geral */
+}
+
+.hero-content {
+    flex: 1; /* Permite que o bloco de texto ocupe o espaço disponível */
+    margin-right: 50px; /* Espaço entre o bloco de texto e a imagem */
+    max-width: 600px; /* Limita a largura do bloco de texto para melhor legibilidade */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    color: var(--dark-grey);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-content .subtitle {
+    font-size: 1.3em;
+    color: var(--dark-grey);
+    margin-bottom: 30px;
+}
+
+.hero-image {
+    flex: 1; /* Permite que o bloco da imagem ocupe o espaço disponível */
+}
+
+.hero-image img {
+    max-width: 100%; /* Garante que a imagem seja responsiva */
+    height: auto;
+    display: block;
+    max-width: 500px; /* Limite de largura para desktop */
+    /* Você pode ajustar o margin-left ou margin-right aqui se precisar de um ajuste fino no alinhamento da imagem dentro do seu flex-item */
+}
+
+/* --- BOTÕES (Mantenha ou adicione conforme necessário) --- */
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    font-size: 1.1em;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
