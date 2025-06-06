@@ -517,3 +517,154 @@ nav ul li a:hover::after {
     display: block;
     opacity: 1;
 }
+
+/* --- SEÇÃO DE RODAPÉ --- */
+.main-footer {
+    background-color: var(--dark-grey); /* Cor de fundo escura do rodapé */
+    color: var(--white); /* Cor do texto principal */
+    padding: 60px 0 20px 0; /* Padding superior, inferior e laterais */
+}
+
+.main-footer .container {
+    display: flex; /* Flexbox para as colunas do rodapé */
+    flex-wrap: wrap; /* Permite que as colunas quebrem linha em telas menores */
+    justify-content: space-between; /* Distribui o espaço entre as colunas */
+    gap: 30px; /* Espaçamento entre as colunas */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%; /* Ocupa toda a largura do container */
+    margin-bottom: 40px; /* Espaço entre as colunas e a parte inferior do rodapé */
+}
+
+.footer-col {
+    flex: 1; /* Permite que as colunas cresçam e ocupem o espaço */
+    min-width: 200px; /* Largura mínima para cada coluna antes de quebrar linha */
+    padding: 0 10px; /* Padding interno para o conteúdo das colunas */
+}
+
+.footer-col h3 {
+    font-size: 1.2em;
+    color: var(--white);
+    margin-bottom: 20px;
+    text-align: left; /* Alinha os títulos das colunas à esquerda */
+}
+
+.footer-logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.brand-info p {
+    font-size: 0.9em;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7); /* Texto mais claro */
+    text-align: left;
+}
+
+/* Estilos para links de navegação e contato */
+.nav-links ul, .social-icons, .my-social-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links ul li, .contact-info p {
+    margin-bottom: 10px;
+}
+
+.nav-links a, .contact-info a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.95em;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, .contact-info a:hover {
+    color: var(--primary-blue);
+}
+
+/* Estilos para ícones de redes sociais */
+.social-icons li, .my-social-links li {
+    display: inline-block; /* Ícones lado a lado */
+    margin-right: 15px; /* Espaçamento entre ícones */
+}
+
+.social-icons a, .my-social-links a {
+    color: var(--white); /* Para ícones SVG ou Font Awesome */
+    font-size: 1.5em; /* Tamanho dos ícones (se usar Font Awesome) */
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex; /* Para centralizar o ícone de imagem */
+    align-items: center;
+    justify-content: center;
+    height: 30px; /* Altura da área clicável do ícone */
+}
+
+/* Estilo específico para as imagens de ícone */
+.social-icons img, .my-social-links img {
+    width: 28px; /* Tamanho das imagens de ícone */
+    height: 28px;
+    object-fit: contain; /* Garante que a imagem se ajuste */
+    vertical-align: middle; /* Ajuda no alinhamento vertical */
+}
+
+.social-icons a:hover, .my-social-links a:hover {
+    color: var(--primary-blue); /* Para ícones SVG ou Font Awesome */
+    /* Para imagens, pode precisar de um filter ou ter uma imagem de hover diferente */
+}
+
+
+/* Seção Inferior do Rodapé */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Linha divisória */
+    padding-top: 20px;
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.footer-bottom p {
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.5); /* Texto de copyright mais sutil */
+    margin-bottom: 10px;
+}
+
+.personal-credits {
+    margin-bottom: 20px;
+}
+
+.personal-credits p {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 10px;
+}
+
+.my-social-links {
+    display: flex; /* Para alinhar seus links pessoais */
+    justify-content: center;
+    gap: 15px; /* Espaçamento entre seus ícones */
+}
+
+.legal-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.8em;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.legal-links a:hover {
+    color: var(--primary-blue);
+}
