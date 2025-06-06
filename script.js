@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const dotsContainer = document.querySelector('.carousel-dots');
 
     let currentSlideIndex = 0; 
-    
+    let dots = []; // Mantenha dots como uma variável no escopo superior para acessibilidade
+
     const getSlideAndGapWidth = () => {
         const slideStyle = window.getComputedStyle(slides[0]);
         const slideWidth = parseFloat(slideStyle.width);
@@ -23,19 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
         carouselTrack.style.transform = 'translateX(-' + currentSlideIndex * totalSlideMovementWidth + 'px)';
     };
 
-    updateCarouselDimensions();
-    window.addEventListener('resize', updateCarouselDimensions);
-
+    // Função para mover o carrossel para um slide específico
     const moveToSlide = (track, targetIndex) => {
         track.style.transform = 'translateX(-' + targetIndex * totalSlideMovementWidth + 'px)';
         
-        const currentSlide = track.querySelector('.current-slide');
+        const currentSlide = track.querySelector('.testimonial-slide.current-slide');
         if (currentSlide) {
             currentSlide.classList.remove('current-slide');
         }
         slides[targetIndex].classList.add('current-slide');
     };
 
+    // Função para atualizar os pontos de navegação
     const updateDots = (targetIndex) => {
         const currentActiveDot = dotsContainer.querySelector('.dot.active');
         if (currentActiveDot) {
@@ -58,17 +58,50 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    slides.forEach((slide, index) => {
-        const dot = document.createElement('span');
-        dot.classList.add('dot');
-        dot.dataset.slideIndex = index;
-        if (index === 0) {
-            dot.classList.add('active');
+    // --- NOVA FUNÇÃO: Limpa todos os pontos existentes ---
+    const clearDots = () => {
+        while (dotsContainer.firstChild) {
+            dotsContainer.removeChild(dotsContainer.firstChild);
         }
-        dotsContainer.appendChild(dot);
-    });
-    const dots = Array.from(dotsContainer.children);
+        dots = []; // Limpa também o array de referência
+    };
 
+    // --- NOVA FUNÇÃO: Gera e adiciona os pontos ---
+    const generateDots = () => {
+        clearDots(); // Limpa antes de gerar
+        slides.forEach((slide, index) => {
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+            dot.dataset.slideIndex = index;
+            dotsContainer.appendChild(dot);
+        });
+        dots = Array.from(dotsContainer.children); // Recaptura os pontos recém-criados
+    };
+
+
+    // Inicialização do carrossel
+    const initializeCarousel = () => {
+        generateDots(); // Gera os pontos na inicialização
+        updateCarouselDimensions(); // Calcula dimensões
+        
+        // Remove a classe 'current-slide' de qualquer slide caso já exista
+        slides.forEach(slide => slide.classList.remove('current-slide'));
+        // Marca o primeiro slide como atual
+        slides[0].classList.add('current-slide');
+        
+        // Remove a classe 'active' de qualquer dot caso já exista
+        dots.forEach(dot => dot.classList.remove('active'));
+        // Marca o primeiro ponto como ativo
+        dots[0].classList.add('active'); 
+
+        showHideArrows(prevButton, nextButton, currentSlideIndex, slides.length);
+    };
+
+    // Chama a inicialização
+    initializeCarousel();
+
+
+    // Event Listeners para as setas
     nextButton.addEventListener('click', () => {
         if (currentSlideIndex < slides.length - 1) {
             currentSlideIndex++;
@@ -87,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Event Listeners para os pontos
     dotsContainer.addEventListener('click', (e) => {
         const targetDot = e.target.closest('.dot');
 
@@ -102,73 +136,76 @@ document.addEventListener('DOMContentLoaded', () => {
         showHideArrows(prevButton, nextButton, currentSlideIndex, slides.length);
     });
 
-    slides[0].classList.add('current-slide');
-    showHideArrows(prevButton, nextButton, currentSlideIndex, slides.length);
+    // Re-calcular a largura se a janela for redimensionada (para responsividade)
+    window.addEventListener('resize', updateCarouselDimensions);
+
 
     // --- Fim Lógica do Carrossel de Depoimentos ---
 
 
     // --- Lógica do Formulário de Contato ---
     const contactForm = document.querySelector('.contact-form');
-    // Cria um elemento para exibir mensagens de feedback
-    const formMessage = document.createElement('div'); 
-    formMessage.classList.add('form-message');
-    contactForm.appendChild(formMessage); // Adiciona a mensagem dentro do formulário
+    // Cria um elemento para exibir mensagens de feedback (se ainda não existir)
+    let formMessage = contactForm.querySelector('.form-message');
+    if (!formMessage) {
+        formMessage = document.createElement('div'); 
+        formMessage.classList.add('form-message');
+        contactForm.appendChild(formMessage);
+    }
 
     contactForm.addEventListener('submit', (event) => {
-        event.preventDefault(); // IMPEDE O RECARREGAMENTO DA PÁGINA
+        event.preventDefault();
 
-        // Limpa mensagens anteriores
         formMessage.textContent = '';
-        formMessage.classList.remove('success', 'error');
+        formMessage.classList.remove('success', 'error', 'loading'); // Limpa todas as classes de estado
 
-        // Coleta os dados do formulário
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const message = document.getElementById('message').value;
 
-        // Validação simples de e-mail (além do required do HTML)
         if (!validateEmail(email)) {
             formMessage.textContent = 'Por favor, insira um e-mail válido.';
             formMessage.classList.add('error');
-            return; // Sai da função se o e-mail for inválido
+            // Torna a mensagem visível
+            formMessage.style.display = 'block';
+            formMessage.style.opacity = '1';
+            return;
         }
 
-        // Simula o envio (substituir por uma chamada real a um backend em um projeto real)
         console.log('Dados do formulário a serem enviados:', { name, email, message });
         
-        // Exibe uma mensagem de "enviando..."
         formMessage.textContent = 'Enviando...';
         formMessage.classList.add('loading');
+        // Torna a mensagem visível
+        formMessage.style.display = 'block';
+        formMessage.style.opacity = '1';
         
         setTimeout(() => {
-            // Em um cenário real, aqui você faria uma requisição Fetch/XMLHttpRequest para um backend
-            // Ex: fetch('/api/send-contact', { method: 'POST', body: JSON.stringify({ name, email, message }) })
-            // .then(response => response.json())
-            // .then(data => { /* ... */ })
-            // .catch(error => { /* ... */ });
-
-            // Simulação de sucesso/erro
-            const success = Math.random() > 0.1; // 90% de chance de sucesso para o estudo
+            const success = Math.random() > 0.1;
 
             formMessage.classList.remove('loading');
 
             if (success) {
                 formMessage.textContent = 'Mensagem enviada com sucesso! Em breve entraremos em contato.';
                 formMessage.classList.add('success');
-                contactForm.reset(); // Limpa o formulário
+                contactForm.reset();
             } else {
                 formMessage.textContent = 'Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.';
                 formMessage.classList.add('error');
             }
-        }, 1500); // Simula um atraso de 1.5 segundos para o envio
+            // A mensagem permanecerá visível até a próxima interação ou um timer para escondê-la
+        }, 1500);
     });
 
-    // Função auxiliar para validar e-mail (pode ser mais robusta)
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(email).toLowerCase());
     }
 
-    // --- Fim Lógica do Formulário de Contato ---
+    // --- Lógica para o Rodapé (Ano Atual) ---
+    const currentYearSpan = document.getElementById('currentYear');
+    if (currentYearSpan) {
+        currentYearSpan.textContent = new Date().getFullYear();
+    }
+    // --- Fim Lógica para o Rodapé ---
 });
